@@ -42,6 +42,12 @@ def bubble_sort(arr):
     ## arr[j] > arr[j+1]이면 교환
     ## 외부 반복문: n-1번 실행
     pass
+    for i in range(0, n):
+        for j in range(0, n-i-1):
+            tmp = arr[j]#기준이 되는 변수
+            if tmp > arr[j+1]:
+                arr[j] = arr[j+1]
+                arr[j+1] = tmp
         
     return arr
 
