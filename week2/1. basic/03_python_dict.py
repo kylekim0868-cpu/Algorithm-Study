@@ -26,9 +26,7 @@
 평균 점수: 87.5
 평균 이상 학생: ['Bob', 'David']
 
-힌트:
-- sum() 함수와 len() 함수를 활용하세요
-- 리스트 컴프리헨션을 사용하면 간결하게 작성할 수 있습니다
+
 """
 
 def find_above_average_students(students):
@@ -41,15 +39,13 @@ def find_above_average_students(students):
     Returns:
         tuple: (평균 점수, 평균 이상 학생 이름 리스트)
     """
-    # TODO: 모든 학생의 점수를 리스트로 추출하세요
-    pass
-    
-    # TODO: 평균 점수를 계산하세요
-    pass
-    
-    # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
-    pass
-    
+    #입력: students: [{"name": "Alice", "score": 85}, {"name": "Bob", "score": 92}]
+    #1) average 변수에 students루프를 사용해 총 점수를 구하고 len(students)로 나눠준 후의 값을 할당
+    average = sum(student["score"]for student in students)/len(students)
+
+    above_average_students = []
+    above_average_students = list(student["name"] for student in students if student["score"] >= average)
+
     return average, above_average_students
 
 # 테스트 케이스

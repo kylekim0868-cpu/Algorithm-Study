@@ -69,6 +69,7 @@ def rotate_matrix_90(matrix):
         9 - 2,2 -> 2,0
     예시 끝)
     """
+    #이중 루프문을 사용하여 새로운 2차원 배열에 데이터 할당
     for i in range(0,n):
         tmp_in_matrix = []
         for j in range(0,n):
