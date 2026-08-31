@@ -36,14 +36,25 @@ def process_print_queue(jobs):
     Returns:
         처리된 작업 리스트
     """
+    """
+            아이디어
+                1) jobs배열에서 deque()를 활용해 데이터를 queue배열에 담아준다.
+                    ex) queue = ["문서C", "문서B", "문서A"]
+                2) queue배열 길이만큼 반복
+                3) processed[]에 추가
+            ? 몰랐던 부분
+                1) deque()의 정확한 기능
+                2) deque는 앞뒤 상관없이 원하는 방향으로 데이터를 넣을 수 있다. (앞 - 프론트 / 뒤 - 리어)
+                3) IndexError 방지를 위해 for문 대신 while을 넣는 것이 바람직.
+    """
     # TODO: deque로 큐 생성
     queue = deque(jobs)
     
     processed = []
-    
-    # TODO: 큐가 비어있지 않은 동안 반복
-    ## 큐에서 작업 꺼내기
-    ## 작업 처리 (출력 및 리스트에 추가)
+    for i in range(len(queue)):
+            process_result = queue.popleft()
+            print(f"처리: {process_result}")
+            processed.append(process_result)
     pass
     
     return processed
