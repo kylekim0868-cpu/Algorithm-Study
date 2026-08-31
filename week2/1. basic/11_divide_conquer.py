@@ -108,7 +108,8 @@ def find_max_divide_conquer(arr, left, right):
     """
     mid = (left+right)//2
 
-    if(left == right):
+    # base line: 양, 끝 idx가 같다는 건 배열의 길이가 1
+    if(left == right): 
         return arr[left]
     left_max = find_max_divide_conquer(arr, left, mid)
     right_max = find_max_divide_conquer(arr, mid+1, right)
