@@ -35,21 +35,93 @@ def find_max_divide_conquer(arr, left, right):
     Returns:
         최댓값
     """
-    # TODO: base case - 원소가 하나면 그 값 반환
-    pass
-    
-    # TODO: 중간 지점 계산
-    pass
-    
-    # TODO: 왼쪽 절반의 최댓값
-    pass
-        
-    # TODO: 오른쪽 절반의 최댓값
-    pass
-    
-    # TODO: 둘 중 큰 값 반환
-    pass
+    """
+            아이디어
+                1) 배열을 반으로 나눈다
+                2) 또 반으로 나눈다         ------
+                ...                          ㅣ     반으로 나눈다 => 구현할 재귀함수의 핵심 내용 
+                N) 반으로 나눈다            ------
+                3) 만약, 반으로 나눈 배열의 길이가 1이면 다시 반으로 합친 후
+                4) 또 반으로 합친다         ------
+                ...                           ㅣ    반으로 합친다 => 구현할 재귀함수의 핵심 내용
+                N) 반으로 합친다            ------
+                5) 반으로 합친 배열의 길이가 1이면 그 값(최대값)을 반환
+                ❓그러면 재귀함수 2개를 써야하는것인가? 라는 생각이 든다.
+                                
+    """
+    """
+        ************************구현1************************
+    """
+        # mid = (left+right)/2
 
+        # if(left == right):  #배열의 길이가 1이기 때문에 하나 존재하는 값을 반환
+        #     return arr[left]
+        # if(arr[left] > arr[right]):
+        #     return arr[left]
+        # elif(arr[left] < arr[right]):
+        #     return arr[right]    
+        # else: 
+        #     return find_max_divide_conquer(arr, left, right)
+        # pass
+    """
+        ************************구현1************************
+    """
+    """
+        ************************구현2************************
+    """
+    # mid = (left+right)//2 # 배열의 중간 포인터
+    
+    # if(left == right):  # 배열의 길이가 1이기 때문에 하나 존재하는 값을 반환
+    #     return arr[left]
+    # if (left >= mid):
+    #     return find_max_divide_conquer(arr, left, mid)
+    # if(left < mid):
+    #     return find_max_divide_conquer(arr, mid+1, right)
+    """
+        ************************구현2************************
+    """
+    """
+        ************************구현3************************
+    """
+    # mid = (left+right)//2 # 배열의 중간 포인터
+    
+    # if(left == right):  # 배열의 길이가 1이기 때문에 하나 존재하는 값을 반환
+    #     return arr[left]
+    # if(left >= mid):
+    #     return find_max_divide_conquer(arr, left, mid)
+    # if(left < mid):
+    #     return find_max_divide_conquer(arr, mid+1, right)
+    """
+        ************************구현3************************
+    """
+    """
+        아이디어4
+            1) mid를 기준으로 왼쪽 영역 / 오른쪽 영역으로 나눈다
+            2) left의 최댓값 추출
+            3) right의 최댓값 추출
+            4) left최댓값 right최댓값 비교 후 더 큰 수를 반환
+                단, 배열의 길이가 1일 때는 그 값을 반환
+                                        
+    """
+    """
+        ************************구현4************************
+    """
+    mid = (left+right)//2
+
+    if(left == right):
+        return arr[left]
+    left_max = find_max_divide_conquer(arr, left, mid)
+    right_max = find_max_divide_conquer(arr, mid+1, right)
+
+    if(left_max > right_max):
+        return left_max
+    elif(left_max < right_max):
+        return right_max
+    else: # ❗️배열은 중복이 허용되지 않는 자료구조인 줄 알고 이 부분을 구현 못했음. 중복이 허용되지 않는 배열은 set!
+        return left_max
+    """
+        ************************구현4************************
+    """    
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
