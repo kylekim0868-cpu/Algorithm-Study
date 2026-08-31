@@ -37,6 +37,14 @@ def gcd(a, b):
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
     # recursive를 이용 
+    # 유클리드 호제법: 두 수 중에 큰 수를 작은 수로 나누어 나온 몫고 나머지를 계속해서 반복하다가 나머지가 0일떄의 몫을 구하는 개념
+    if b == 0:
+        return a
+    rem = a%b
+    if rem == 0:
+        return b
+
+    return gcd(b, a%b)
     pass
 
 def gcd_iterative(a, b):
@@ -51,6 +59,12 @@ def gcd_iterative(a, b):
     """
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
+    while b > 0:
+        tmp = b
+        rem = a%b
+        b = rem
+        a = tmp
+    return a 
     pass
 
 def lcm(a, b):
@@ -63,7 +77,10 @@ def lcm(a, b):
     Returns:
         최소공배수
     """
+    # 최소공배수 계산 - 두 수의 곱을 두 수의 최대공약수로 나눈 결과값
     # TODO: LCM 계산
+    result = a*b//gcd(a,b)
+    return result
     pass
 
 def extended_gcd(a, b):
@@ -78,10 +95,10 @@ def extended_gcd(a, b):
         (gcd, x, y) 튜플
     """
     # TODO: 확장 유클리드 호제법 구현
-    # base case: b가 0이면 (a, 1, 0) 반환    
+    # base case: b가 0이면 (a, 1, 0) 반환   
     # recursive case
     # 역추적하며 x, y 계산
-    pass
+    return False
 
 def is_prime(n):
     """
@@ -97,6 +114,60 @@ def is_prime(n):
     # n이 2보다 작으면 False
     # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
     # 3부터 sqrt(n)까지 홀수만 확인
+    """
+        아이디어
+        1) 소수 개념을 이해
+            소수란 1과 자기 자신을 제외한 수로 나누어 떨어지지 않는 수. (단, 1과 2는 제외)
+            -> 보통 짝수는 소수에 포함이 되지 않음. (이유: 4는 1,2,4로 나누어떨어지기 때문)
+        2) 말로 이해한 내용을 sudo code 형식로 한 단계씩 작성
+            2-1)
+                n이 1일 때 False 반환 
+            2-2)
+                n이 2일 때 True 반환 
+            2-3)
+                n이 3부터는 1과 자기 자신을 제외한 수들로 나누었을 때 나누어떨어진다면 소수X / 나누어떨어지지 않는다면 소수O
+    """
+    """
+        ************************구현1************************
+    """
+    # def sqrt(n):
+    #     return n**n
+    # if n < 2:
+    #     return False
+    # elif n == 2:
+    #     return True
+    # elif n > 2:
+    #     if sqrt(n)%2 != 0:
+    #         return True
+    """
+        ************************구현1************************
+    """
+    """
+        구현1 - 실패 이유
+            1) 거듭제곱근을 표현할 수 있는 파이썬 기본 문법 오류
+            2) n이 3부터 홀수를 계산한다면 와 6,9와 같은 숫자들은 소수가 아닌데도 소수라고 반환.
+        구현1 - 해결책
+            1) AI의 도움을 받아 거듭제곱근을 표현할 수 있는 파이썬 문법에 대한 개념 이해
+            2) 홀수가 아닌 모든 수를 나누어보는 경우의 수를 코드에 녹여내야함. -> 3 ~ sqrt(n)까지 반복하는데 나누어떨어지는 즉시 false.
+    """
+    """
+        ************************구현2************************
+    """
+    def sqrt(n):
+        return n**0.5
+    if n < 2:
+        return False
+    elif n == 2:
+        return True
+    elif n > 2:
+        for i in range(2,int(sqrt(n))+1): #❗️범위 설정을 정확하게 하는 것이 중요!
+            if n%i == 0:
+                return False
+        return True
+    """
+        ************************구현2************************
+    """
+    
     pass 
 
 # 테스트 케이스
