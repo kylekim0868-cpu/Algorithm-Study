@@ -33,19 +33,53 @@ def binary_search(arr, target):
     Returns:
         target의 인덱스 (없으면 -1)
     """
-    left = 0
-    right = len(arr) - 1
-    
-    # TODO: left가 right보다 작거나 같을 때까지 반복
-    ## 중간 인덱스 계산
-    ## arr[mid]와 target 비교
-    ## 같으면 mid 반환
-    ## target이 더 크면 left = mid + 1
-    ## target이 더 작으면 right = mid - 1
+    """
+        아이디어
+            1) 배열의 길이만큼 반복문을 돌린다
+            2) 반복문 안에 target과 배열의 값의 일치 여부 조건을 넣는다.
+            3) 일치하면 원본 배열의 index 반환
+            4) 일치하지 않으면 -1 반환
+            -> 선형 탐색(단순 기본 문법 로직)
+    """
+    """
+        ************************구현1************************
+    """
+    # n = len(arr)
+    # for i in range(0, n):
+    #     if target == arr[i]:
+    #         return i
+    # return -1
     pass
-    
-    return -1
+    """
+        ************************구현1************************
+    """
+    """
+            이분 탐색 아이디어(조건: 무조건 정렬된 배열에 경우 가능)
+                1) 배열의 양 끝쪽 index를 left와 right에 할당
+                2) 양쪽의 중간인 mid = left+right // 2 할당
+                3) mid를 기준으로 반을 나누어 target과 비교
+    """
+    """
+        ************************구현2************************
+    """
+    n = len(arr)
+    left = 0 # 배열의 가장 첫 번째 idx
+    right = n-1 # 배열의 가장 마지막 idx
+    mid = int((left+right)/2) #배열의 가운데 idx (배열이 홀수 개일 경우 float이기 때문에 int를 사용해 소숫점 뒤는 버림)
 
+    if target < arr[mid]: #target이 배열의 가운데 idx에 해당하는 숫자보다 작을 경우 -> range: 0~mid까지 반복하며 target과 일치하는지 찾기
+        for i in range(left, mid):
+            if target == arr[i]: return i
+    elif target > arr[mid]: #target이 배열의 가운데 idx에 해당하는 숫자보다 클 경우 -> range: mid~right까지 반복하며 target과 일치하는지 찾기
+        for i in range(mid, right):
+            if target == arr[i]: return i
+    else: return mid # target 배열의 mid 인덱스에 해당하는 값과 같을 경우 mid 반환
+
+    return -1
+    pass
+    """
+        ************************구현2************************
+    """
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
