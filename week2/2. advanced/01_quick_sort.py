@@ -34,21 +34,45 @@ def partition(arr, low, high):
     Returns:
         피벗의 최종 위치 인덱스
     """
+    """
+        아이디어
+            1) 배열의 시작점과 끝점 지정
+            2) 피벗 지정(일반적으로 끝점이라고 가정)
+            3) 피벗을 기준으로 작은 값은 왼쪽으로 큰 값은 오른쪽으로
+            4) 피벗(1개)과 분할(n-1개)된 배열을 제외한 수만큼 순회
+            5) 분할된(n-1개) 배열의 개수가 1개라면 종료
+    """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
+    # pivot = high ❌ 오답
+    pivot = arr[high]
     pass
     
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
+    i = low - 1
     pass
     
     # TODO: low부터 high-1까지 순회하면서
     ## 현재 원소가 피벗보다 작거나 같으면:
     ##   1. i를 1 증가
     ##   2. arr[i]와 arr[j]를 교환
-    pass
-    
+    # for j in range(low, high): # 피벗을 제외한 배열 수만큼 순회
+    #     if arr[i] <= arr[pivot]:
+    #         i += 1
+    #     else:
+    #        #arr[i] = arr[j] # ❌한쪽으로 대입하는 로직이기 때문에 배열이 줄어들고 하나의 값이 사라진다. ex) [0, 1] => [1]
+    #         arr[i], arr[j] = arr[j], arr[i] # Swap
+    # pass
+    for j in range(low, high): # 피벗을 제외한 배열 수만큼 순회
+            if arr[j] <= pivot:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i] 
+
     # TODO: 피벗을 올바른 위치(i+1)에 배치
-    pass
-    
+    pivot = i + 1 # ❗️i+1에 배치되는 이유: i는 작은 원소들의 마지막 인덱스이기 때문에 피벗은 i보다는 무조건 1 높아야 올바른 정렬이 됨.
+
+    # 비교를 마치고 나서 피벗의 위치가 올바른 자리로 찾아갈 수 있게 선언해야함.
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+
     return i + 1
 
 def quick_sort_helper(arr, low, high):
@@ -61,10 +85,14 @@ def quick_sort_helper(arr, low, high):
         high: 끝 인덱스
     """
     # TODO: base case - low가 high보다 작을 때만 정렬
-    ## 분할하여 피벗 인덱스 얻기
+    ## 분할하여 피벗 인덱스 얻기   
     ## 피벗 왼쪽 부분 재귀 정렬
     ## 피벗 오른쪽 부분 재귀 정렬
-    pass 
+    if low <= high:
+            pivot_index = partition(arr, low, high)
+            quick_sort_helper(arr, low, pivot_index-1)
+            quick_sort_helper(arr, pivot_index+1, high)
+    pass
     
 
 def quick_sort(arr):
