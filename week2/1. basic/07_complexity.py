@@ -15,11 +15,6 @@
 예제:
 입력: [4, 3, 2, 7, 8, 2, 3, 1]
 출력: [2, 3]
-
-힌트:
-- 방법1: 이중 반복문 (O(n²) 시간, O(1) 공간)
-- 방법2: 정렬 후 탐색 (O(n log n) 시간, O(1) 공간)
-- 방법3: 해시 집합 사용 (O(n) 시간, O(n) 공간)
 """
 
 def find_duplicates_brute_force(nums):
@@ -30,22 +25,12 @@ def find_duplicates_brute_force(nums):
     """
     duplicates = []
     n = len(nums)
-    
-    # TODO: 이중 반복문으로 중복 찾기
-    ## i번째 원소와 i+1 이후의 모든 원소를 비교
-    ## 같은 원소를 찾으면 duplicates에 추가 (중복 추가 방지 필요)
-    """
-        1) 배열에서 기준 수를 정하기
-        2) 기준 수를 제외한 나머지 숫자를 탐색해 같은 숫자를 찾기
-        3) 같을 경우 duplicates에 할당
-    """
-    for i in range(0,n):
-        for j in range(i+1,n):
+
+    for i in range(0,n): # 처음부터 끝까지 순회
+        for j in range(i+1,n): # i+1부터 끝까지 순회
             if nums[i] == nums[j]:
-                if nums[i] not in duplicates:
-                    duplicates.append(nums[i]) 
-    pass
-    
+                if nums[i] not in duplicates: # 중복 확인 여부
+                    duplicates.append(nums[i])
     return duplicates
 
 def find_duplicates_sorting(nums):
@@ -54,22 +39,15 @@ def find_duplicates_sorting(nums):
     시간 복잡도: O(n log n) - 정렬
     공간 복잡도: O(1) - 정렬을 in-place로 수행
     """
-    if not nums:
-        return []
-    
-    # TODO: 배열을 정렬하세요 (nums.sort() 사용)
     nums.sort()
-    pass
-    
     duplicates = []
+    n = len(nums)
     
-    # TODO: 인접한 원소를 비교하여 중복 찾기
-    # i와 i+1 원소가 같고, duplicates에 없으면 추가
-    for i in range(0, len(nums)-1):
-        if nums[i] == nums[i+1] and (nums[i] not in duplicates):
-            duplicates.append(nums[i])
-    pass
-    
+    for i in range(0, n):
+        if i < n-1:
+            if nums[i] == nums[i+1]:
+                if nums[i] not in duplicates: # 중복으로 확인 여부
+                    duplicates.append(nums[i])
     return duplicates
 
 def find_duplicates_hash(nums):
@@ -78,21 +56,19 @@ def find_duplicates_hash(nums):
     시간 복잡도: O(n)
     공간 복잡도: O(n)
     """
+    """
+        아이디어
+            1) 순회하면서 seen()에 데이터를 넣는데
+            2) seen()에 데이터가 중복된다면 duplicates배열에 담기
+    """
     #set은 순서X, 중복x, 변경X 다만) 추가O
     seen = set()
     duplicates = set()
-    
-    # TODO: 각 원소를 순회하면서
-    ## 이미 seen에 있으면 duplicates에 추가
-    ## 없으면 seen에 추가
-    n = len(nums)
-    for i in range(0, n):
+    for i in range(len(nums)):
         if nums[i] in seen:
             duplicates.add(nums[i])
         else:
             seen.add(nums[i])
-    pass
-    
     return list(duplicates)
 
 def measure_time(func, nums, method_name):
