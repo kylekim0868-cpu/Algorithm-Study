@@ -15,40 +15,28 @@
 예제:
 입력: [64, 34, 25, 12, 22, 11, 90]
 출력: [11, 12, 22, 25, 34, 64, 90]
-
-힌트:
-- 외부 반복문: n-1번 실행
-- 내부 반복문: 인접한 원소 비교 및 교환
-- 최적화: 교환이 없으면 이미 정렬된 것이므로 조기 종료
 """
 
 def bubble_sort(arr):
     """
     버블 정렬 구현
-    
+     
     Args:
         arr: 정렬할 배열
     
     Returns:
         정렬된 배열
     """
+    """
+        아이디어
+            1) 포인터 2개를 활용 n만큼 순회하면서 arr[i] n-1만큼 순회하면서 arr[j] 비교
+            2) arr[j] > arr[j+1] : 스왑 -> 버블 정렬은 인접한 두 원소를 비교한다는 개념
+    """
     n = len(arr)
-    
-    # TODO: 외부 반복문 - n-1번 반복
-    # 각 패스마다 가장 큰 원소가 끝으로 이동
-    ## TODO: 내부 반복문 - 인접한 원소 비교
-    ## 0부터 n-i-1까지 반복 (이미 정렬된 뒷부분 제외)
-    ## TODO: 인접한 두 원소 비교 및 교환
-    ## arr[j] > arr[j+1]이면 교환
-    ## 외부 반복문: n-1번 실행
-    pass
     for i in range(0, n):
-        for j in range(0, n-i-1):
-            tmp = arr[j]#기준이 되는 변수
-            if tmp > arr[j+1]:
-                arr[j] = arr[j+1]
-                arr[j+1] = tmp
-        
+        for j in range(0, n-1):
+            if arr[j] < arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
     return arr
 
 def bubble_sort_optimized(arr):
@@ -63,16 +51,6 @@ def bubble_sort_optimized(arr):
     """
     n = len(arr)
     
-    for i in range(n):
-        swapped = False  # 교환 발생 여부
-        
-        # TODO: 내부 반복문과 교환 로직 구현
-        # 교환이 발생하면 swapped = True 설정        
-        pass
-        
-
-        # TODO: 교환이 없으면 이미 정렬된 것이므로 break
-        pass
 
     return arr
 
