@@ -39,6 +39,20 @@ def find_above_average_students(students):
     Returns:
         tuple: (평균 점수, 평균 이상 학생 이름 리스트)
     """
+    """
+        아이디어)
+            1) 딕셔너리 자료구조에 대해 얼마나 이해하고 있는지 -> key, value의 쌍으로 이루어진 자료구조
+            2) key와 value을 적절하게 활용을 잘했는가에 대한 이해도 테스트
+            3) 평균점수 = students 순회하며 점수를 추출 후 합산한 결과 / students의 길이
+            4) students 순회하며 조건(평균 점수 >= students.get("score"))에 부합하는 students.get("name")을 리스트에 할당
+            5) 리스트를 다시 배열에 담는다?
+    """
+    n = len(students)
+    score_avg = (sum(students[i].get("score") for i in range(n)))/n
+    score_avg_students = list(students[i].get("name") for i in range(n) if students[i].get("score") >= score_avg)
+
+    return [score_avg, score_avg_students]
+
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
