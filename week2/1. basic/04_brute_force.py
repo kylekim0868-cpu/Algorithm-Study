@@ -20,8 +20,6 @@
       nums[0] + nums[4] = 2 + 7 = 9 (중복이지만 인덱스가 다름)
 
 실제로는: nums[0] + nums[1] = 2 + 7 = 9만 해당
-
-
 """
 
 def find_two_sum_pairs(nums, target):
@@ -35,7 +33,19 @@ def find_two_sum_pairs(nums, target):
     Returns:
         list: (i, j) 인덱스 쌍의 리스트
     """
+    """
+        아이디어
+            1) 한 배열에서 두 수를 비교해야하기 때문에 이중 순회
+            2) 외부 순회 nums-1길이만큼 
+            3) nums만큼 내부 순회
+            4) nums[i]+nums[j] = target -> pairs.append()
+    """
     pairs = []
+    n = len(nums)
+    for i in range(0, n-1): # i가 마지막 인덱스일 경우 그 뒤에 비교할 숫자가 없기 때문에 n-1까지만 순회한다.
+        for j in range(i+1,n): # 첫 번째 순회의 index보다 한 단계 뒤인 index부터 시작: 1
+            if nums[i]+nums[j] == target:
+                pairs.append((i,j))
     return pairs
 
 # 테스트 케이스
