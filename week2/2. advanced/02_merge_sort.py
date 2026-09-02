@@ -57,9 +57,9 @@ def merge(arr, left, mid, right):
     merge_arr = []
 
     # 1) for문
-    # 2) while문
     # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
     pass
+    # 1) for문
     # 왼쪽 / 오른쪽 배열의 개수가 다르기 때문에 2개의 서로 다른 포인터를 할당
     i = 0
     j = 0
@@ -76,6 +76,7 @@ def merge(arr, left, mid, right):
         else: 
             merge_arr.append(right_arr[j])
             j += 1
+
     # 어려운 코드 구현
     for k in range(len(merge_arr)):
         arr[left+k] = merge_arr[k]

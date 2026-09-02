@@ -38,8 +38,7 @@ def process_emergency_room(patients):
     """
     # TODO: 빈 힙 생성
     heap = []
-    
-    
+    heap = patients
     # TODO: 모든 환자를 힙에 추가
     pass
         

@@ -50,8 +50,7 @@ def is_palindrome(s):
     for chr in s:
         if chr.isalnum():
             new_chr += chr
-    # 임시 배열을 뒤집어 입력 문자열과 비교 
-
+    # 문자열을 뒤집어 일치 여부 판단 후 반환
     if new_chr[::-1] == new_chr:
         return True
     else:
