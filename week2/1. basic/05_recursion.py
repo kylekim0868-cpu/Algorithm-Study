@@ -30,6 +30,11 @@ def factorial(n):
     Returns:
         n의 팩토리얼 값
     """
+    # base case - n이 0이거나 음수인 경우 1을 반환  
+    if n <= 0:
+        return 1
+    else: 
+        return n*factorial(n-1)
 def fibonacci(n):
     """
     재귀를 사용한 피보나치 수 계산
@@ -40,6 +45,15 @@ def fibonacci(n):
     Returns:
         n번째 피보나치 수
     """
+    #base case - n이 음수이면 return
+    if n < 0:
+        return
+    elif n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    elif n >= 2:
+        return fibonacci(n-2)+fibonacci(n-1)
 
 # 테스트 케이스
 if __name__ == "__main__":
