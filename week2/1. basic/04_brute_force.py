@@ -36,21 +36,6 @@ def find_two_sum_pairs(nums, target):
         list: (i, j) 인덱스 쌍의 리스트
     """
     pairs = []
-    n = len(nums)
-    """
-        1) 아이디어
-            이중루프를 활용. 모든 경우의 수를 찾는다.
-            첫 번째 루프: nums i
-                두 번째 내부 루프: 
-                    i를 제외한 나머지 숫자와의 합을 계산.
-                    첫 번째 루프의 값과 내부 루프의 합이 같다면 index 추출 후. pairs에 넣기.
-    """
-    for i in range(0,n-1): #자기 자신(기준 수)을 제외한 수와 합산해야하기 때문에 n이 아닌 n-1
-        for j in range(i+1,n): #기준 수와 합산할 대상 수는 포함되야 하기 때문에 n
-            if target == nums[i]+nums[j]: 
-                tmp = (i,j)
-                pairs.append(tmp)         
-
     return pairs
 
 # 테스트 케이스

@@ -18,10 +18,6 @@
 
 입력: "race a car"
 출력: False
-
-힌트:
-- 알파벳과 숫자만 남기고 소문자로 변환하세요 
-- 문자열을 뒤집어서 비교하거나, 양 끝에서 시작해 중앙으로 이동하며 비교하세요
 """
 
 def is_palindrome(s):
@@ -34,21 +30,33 @@ def is_palindrome(s):
     Returns:
         bool: 회문이면 True, 아니면 False
     """
+    """
+        아이디어
+            0) 문자열 인자(Args)를 먼저 통일시킨다. ex) abCbA -> abcba # 이유는 파이썬에서 대문자와 소문자를 다르다고 판별
+            1) 문자열의 문자 개수만큼 순회
+            2) 순회하면서 공백과 특수문자만 빼고 추출 -> isalnum()메서드 사용
+            3) 문자와 숫자만 담은 문자열 뒤집기
+            4) 뒤집은 문자열 = 기존 문자열 -> 일치하면 결과값에 True반환 / 일치하지 않으면 결과값에 False반환
+        시간복잡도
+            0(n)
+                - 근거: 입력 문자열의 길이가 n이라고 가정한다면 n만큼만 순회하기 때문. n이 커지면 시간복잡도 n만큼 증가!
+    """
+    # lower()
+    s = s.lower()
+    # 숫자와 문자만 담아줄 임시 문자열 생성
+    new_chr = ""
 
-    # 1) 문자열 정제
-    #   s 문자열 루프 -> isalnum()매서드로 모든 문자 비교
-    #       1-1) isalnum() = True
-    #.      1-2) isalnum() = False -> 특수문자, 공백 모두 제거
-    clean_s = ""
+    # 문자열 순회하면서 isalnum()을 사용해 숫자와 문자만 new_chr에 할당
     for chr in s:
-        if chr.isalnum() == True:
-            clean_s += chr
-            
-    # 2) 소문자 변환
-    clean_s = clean_s.lower()
+        if chr.isalnum():
+            new_chr += chr
+    # 임시 배열을 뒤집어 입력 문자열과 비교 
 
-    return clean_s == clean_s[::-1]
-
+    if new_chr[::-1] == new_chr:
+        return True
+    else:
+        return False
+    
 #테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
