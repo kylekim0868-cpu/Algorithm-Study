@@ -18,11 +18,6 @@
 
 입력: "(()"
 출력: False
-
-힌트:
-- 여는 괄호 '('는 스택에 push
-- 닫는 괄호 ')'를 만나면 스택에서 pop
-- 마지막에 스택이 비어있으면 True
 """
 
 def is_valid_parentheses(s):
@@ -34,51 +29,26 @@ def is_valid_parentheses(s):
     
     Returns:
         올바른 괄호면 True, 아니면 False
+    """ 
     """
+        아이디어
+            1) stack은 후입선출 개념의 자료구조. 예를 들면, 뷔페식으로 나오는 음식들. 가장 최근에 요리한 음식들을 손님께 내놓는다.
+            2) 올바른 괄호의 경우 - 여는 괄호와 닫는 괄호가 짝을 이룬다면 True
+            3) 잘못된 괄호의 경우 - 짝을 이루지 못하면 False
+            4) 괄호들을 넣을 임시 배열 생성
+            5) 입력받은 문자열 순회
+            6) 만약 (을 만난다면 append / )을 만난다면 pop을 진행
+            7) 임시 배열에 괄호 하나라도 남아있다면 False
     """
-            처음 아이디어
-                1) Stack > LIFO(선입선출): 오래된 데이터는 가장 아래에 쌓인다는 개념?
-                2) 이 개념을 CS에 대입한다면 어떻게 생각해야 할까?
-                    2-1) 문자열을 순회하면서 여는 괄호와 닫는 괄호를 구분하여 각기 다른 2개의 배열에 넣는다?
-                3) 괄호의 올바른 짝지음은 어떻게 코드로 구현을 해야할 것에 대한 고민 필요
-                    -> 3-1) 2-1)에서 넣었던 2개의 배열의 길이가 다르다면 False
-                    -> 3-2) 2개의 배열의 길이가 같다면 True
-                    => 이 2가지의 분기처리만으론 짝짓기 검증 오류가 발생.
-            AI와 교류한 아이디어
-                1) 문자열 순회
-                2) 빈 배열에 여는 괄호가 있다면 push
-                3) 닫는 괄호가 있다면 pop 
-                4) 순회가 끝난 후에 배열이 비어있다면 True / 배열이 비어있지 않다면 False
-                    ex) "()()"
-                        1) "(" => stack = [(] push
-                        2) ")" => stack = [] pop
-                        3) "(" => stack = [(]
-                        4) ")" => stack = [] pop
-                        5) stack = [] 비어있으므로 True 반환
-                    ex) "))))" 
-                        1) "(" => stack = [] pop -> False 빈 배열에서 pop매서드를 사용하면 에러가 나기 때문에 예외 처리는 필수.
-    """
-    """
-        ************************구현1************************
-    """
-    stack = []
+    tmp_is = []
     for chr in s:
-        if(chr == "("):
-            stack.append(chr)
-        elif(chr == ")"):
-            if(len(stack) == 0):
-                return False
-            else: stack.pop()
-    if(len(stack) == 0):
-        return True
-    else:
-        return False
-    
-    """
-        ************************구현1************************
-    """    
-  
-
+        if chr == "(":
+            tmp_is.append(chr)
+        elif chr == ")":
+            if not tmp_is: return False
+            tmp_is.pop()
+    if not tmp_is: return True 
+    else: return False 
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1

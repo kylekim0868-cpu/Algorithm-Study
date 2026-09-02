@@ -29,13 +29,13 @@ def bubble_sort(arr):
     """
     """
         아이디어
-            1) 포인터 2개를 활용 n만큼 순회하면서 arr[i] n-1만큼 순회하면서 arr[j] 비교
+            1) n만큼 순회하면서 arr[i] n-1만큼 순회하면서 arr[j] 비교
             2) arr[j] > arr[j+1] : 스왑 -> 버블 정렬은 인접한 두 원소를 비교한다는 개념
     """
     n = len(arr)
     for i in range(0, n):
         for j in range(0, n-1):
-            if arr[j] < arr[j+1]:
+            if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
     return arr
 
