@@ -38,7 +38,7 @@ def is_valid_parentheses(s):
             4) 괄호들을 넣을 임시 배열 생성
             5) 입력받은 문자열 순회
             6) 만약 (을 만난다면 append / )을 만난다면 pop을 진행
-            7) 임시 배열에 괄호 하나라도 남아있다면 False
+            7) 문자열 순회가 끝난 후 스택이 비어 있어야 True
     """
     tmp_is = []
     for chr in s:

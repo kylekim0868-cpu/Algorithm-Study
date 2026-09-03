@@ -14,14 +14,9 @@
 예제:
 입력: ["문서A", "문서B", "문서C"]
 출력:
-처리: 문서A
+처리: 문서A 
 처리: 문서B
 처리: 문서C
-
-힌트:
-- 파이썬에서는 리스트로 큐 구현 가능
-- append(): 뒤에 추가 (enqueue)
-- pop(0): 앞에서 제거 (dequeue)
 """
 
 from collections import deque
@@ -37,27 +32,21 @@ def process_print_queue(jobs):
         처리된 작업 리스트
     """
     """
-            아이디어
-                1) jobs배열에서 deque()를 활용해 데이터를 queue배열에 담아준다.
-                    ex) queue = ["문서C", "문서B", "문서A"]
-                2) queue배열 길이만큼 반복
-                3) processed[]에 추가
-            ? 몰랐던 부분
-                1) deque()의 정확한 기능
-                2) deque는 앞뒤 상관없이 원하는 방향으로 데이터를 넣을 수 있다. (앞 - 프론트 / 뒤 - 리어)
-                3) IndexError 방지를 위해 for문 대신 while을 넣는 것이 바람직.
+        설계 단계)
+            - 일단 인자로 받은 배열을 deque에 담아준다.
+            - 인쇄 작업 리스트의 순서대로 배열의 가장 처음 인덱스에 담겨져있기 때문에 배열의 개수(len(jobs))만큼 순회
+            - 순회
+                print(jobs)
+                배열의 인덱스 순서대로 임시 배열(printed)에 append()
+                deque.popleft() 진행   
     """
-    # TODO: deque로 큐 생성
-    queue = deque(jobs)
-    
-    processed = []
-    for i in range(len(queue)):
-            process_result = queue.popleft()
-            print(f"처리: {process_result}")
-            processed.append(process_result)
-    pass
-    
-    return processed
+    q = deque(jobs)
+    printed = []
+    for i in range(len(jobs)):
+        print(f"처리: {jobs[i]}")
+        printed.append(jobs[i])
+        q.popleft()
+    return printed
 
 # 테스트 케이스
 if __name__ == "__main__":
