@@ -26,13 +26,15 @@
 
 찾는 값: 4 → True
 찾는 값: 6 → False
-
-힌트:
-- target < root.value → 왼쪽으로 이동
-- target > root.value → 오른쪽으로 이동
-- target == root.value → 찾음!
 """
-
+"""
+    설계)
+        - p = root를 기준 노드로 정한다
+        - base line : node == None이라면 return
+        - node == target : return False 중복일 경우는 존재하지 않기 때문에
+        - node < target : search_bst(root.lefat, target)  ------I 재귀과정
+        - node > target : search_bst(root.right, target) ------I 
+"""
 class TreeNode:
     def __init__(self, value):
         self.value = value
@@ -50,14 +52,14 @@ def search_bst(root, target):
     Returns:
         True/False
     """
-    # TODO: root가 None이면 False 반환
-    pass
-    
-    # TODO: 값을 찾으면 True 반환
-    ## target이 작으면 왼쪽 서브트리에서 검색
-    ## target이 크면 오른쪽 서브트리에서 검색
-    pass
-
+    if root == None:
+        return False
+    if root.value == target:
+        return True
+    if root.value < target:
+        return search_bst(root.right, target)
+    if root.value > target:
+        return search_bst(root.left, target)
 # 테스트 케이스
 if __name__ == "__main__":
     # BST 생성:
