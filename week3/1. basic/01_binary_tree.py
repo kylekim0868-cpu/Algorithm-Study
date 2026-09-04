@@ -29,9 +29,13 @@
 
 힌트:
 - 재귀로 간단히 구현 가능
-- 순회 순서만 다름
+- 순회 순서만 다름                                                                                                                                                                                                                
 """
-
+"""
+    설계)
+        1) 재귀적 생각 - 왼쪽으로 반복해서 내려가다가 자식 노드가 없다면 다시 올라가서 부모 노드를 만나면 오른쪽 탐색
+        2) 종료 지점 - node 자체가 없다면 종료
+"""
 class TreeNode:
     """이진 트리 노드"""
     def __init__(self, value):
@@ -42,55 +46,61 @@ class TreeNode:
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
     result = []
-    
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
-    # TODO: 루트 값 추가
-    pass
-    
-    # TODO: 왼쪽 서브트리 순회
-    pass
-    
-    # TODO: 오른쪽 서브트리 순회
-    pass
-    
+    # node 객체 할당 코드 구현 방법을 모르겠네
+    node = root
+    # base line: node가 비어 있다면 return
+    if node == None:
+        return [] # "return" 은 None을 반환
+    # 현재 node를 result에 담기
+    result.append(node.value)
+    # 현재 node에서 왼쪽으로 이동
+    left_result = preorder(node.left) # 왼쪽으로 이동한 node의 result배열 반환
+    # 현재 node에서 오른쪽으로 이동
+    right_result = preorder(node.right) # 왼쪽으로 이동한 node의 result배열 반환
+    # 
+    result = result + left_result + right_result
+
     return result
 
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
     result = []
+    # node 객체 할당 코드 구현 방법을 모르겠네
+    node = root
+    # base line: node가 비어 있다면 return
+    if node == None:
+        return [] # "return" 은 None을 반환
     
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
-    # TODO: 왼쪽 서브트리 순회
-    pass
-    
-    # TODO: 루트 값 추가
-    pass
-    
-    # TODO: 오른쪽 서브트리 순회
-    pass
+    # 현재 node에서 왼쪽으로 이동
+    left_result = inorder(node.left) # 왼쪽으로 이동한 node의 result배열 반환
+    # 현재 node를 result에 담기
+    result.append(node.value)
+    # 현재 node에서 오른쪽으로 이동
+    right_result = inorder(node.right) # 왼쪽으로 이동한 node의 result배열 반환
+    # 
+    result = left_result + result + right_result 
+
     
     return result
 
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
+# node 객체 할당 코드 구현 방법을 모르겠네
+    node = root
+    # base line: node가 비어 있다면 return
+    if node == None:
+        return [] # "return" 은 None을 반환
     
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
-    # TODO: 왼쪽 서브트리 순회
-    pass
-    
-    # TODO: 오른쪽 서브트리 순회
-    pass
-    
-    # TODO: 루트 값 추가
-    pass
-    
+    # 현재 node에서 왼쪽으로 이동
+    left_result = postorder(node.left) # 왼쪽으로 이동한 node의 result배열 반환
+    # 현재 node에서 오른쪽으로 이동
+    right_result = postorder(node.right) # 왼쪽으로 이동한 node의 result배열 반환
+    # 현재 node를 result에 담기
+    result.append(node.value)
+    # 
+    result = left_result + right_result + result   
+   
     return result
 
 # 테스트 케이스
