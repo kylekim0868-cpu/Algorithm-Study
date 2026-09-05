@@ -48,7 +48,7 @@ def is_valid_parentheses(s):
             if not tmp_is: return False
             tmp_is.pop()
     if not tmp_is: return True 
-    else: return False 
+    else: return False
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1

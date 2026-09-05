@@ -39,13 +39,34 @@ def create_graph(vertices, edges, directed=False):
     
     Returns:
         그래프 딕셔너리
+    """ 
+    """
+        설계)
+            1. 빈 그래프 초기화
+                -> 해시 테이블 초기화
+                    -> for문? 아니면 얕은 복사?
+                2. 무방향 그래프라면 인접 행렬로 해시 테이블 형태로 담고
+                    -> 형태 {
+                        0: [1,2],
+                        1: [0,2],
+                        ..
+                    }
     """
     # TODO: 빈 그래프 초기화
+    # 노드의 총 개수 = 간선의 개수 = graph
+    # None or 0을 삽입해 초기화
+    graph = {}
+    for i in range(vertices): # 정점 개수만큼 순회
+        graph[i] = [] # ❗️리스트 자료구조 특성상 배열이 초기화 되어 있지 않은 리스트에 추가할 수가 없다.
     pass
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
+    for u, v in edges:
+        graph[u].append(v)
     ## 무방향 그래프면 반대 방향도 추가
+        if not directed: # 무방향 그래프라면
+            graph[v].append(u)
     pass
     
     return graph
